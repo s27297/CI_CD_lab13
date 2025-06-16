@@ -32,13 +32,10 @@ pipeline{
 
                 # Pokazuje wygenerowane pliki
                 ls -la
-
                 # Raport pokrycia
                 gcov -b -o . testy-funkcje.cpp
-                gcovr -r . --xml-pretty --output coverage.xml --gcovr-format=1
-
                 '''
-                sh 'ls -la'
+               sh' gcovr -r . --xml-pretty --output coverage.xml --gcovr-format=1'
             }
         }
 
