@@ -34,7 +34,8 @@ pipeline{
                 stage('Coverage'){
                     steps{
                         script{
-                            sh 'gcov main.cpp'
+                            sh 'g++ -fprofile-arcs -ftest-coverage -O0 tests.cpp funkcje.cpp -o testy'
+                            sh 'gcov -b funkcje.cpp'
                         }
 
                     }
