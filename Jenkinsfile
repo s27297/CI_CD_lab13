@@ -46,7 +46,7 @@ pipeline{
 
                 ls -la
                 '''
-               sh' gcovr --sonarqube  coverage.xml '
+               sh' gcovr -r . --sonarqube  coverage.xml '
 
                 archiveArtifacts artifacts: "cppcheck-result.xml", fingerprint: true
                 archiveArtifacts artifacts: "coverage.xml", fingerprint: true
