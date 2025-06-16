@@ -35,6 +35,7 @@ pipeline{
                 # Raport pokrycia
                 gcov -b -o . testy-funkcje.cpp
                 '''
+                sh 'ls -la'
             }
         }
     
