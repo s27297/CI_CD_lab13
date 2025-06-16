@@ -35,7 +35,7 @@ pipeline{
 
                 # Raport pokrycia
                 gcov -b -o . testy-funkcje.cpp
-                gcovr -r . --xml-pretty -o coverage.xml
+                gcovr -r . --cobertura-pretty -o coverage.xml
                 '''
                 sh 'ls -la'
             }
