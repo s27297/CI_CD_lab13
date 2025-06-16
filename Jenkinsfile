@@ -47,7 +47,7 @@ pipeline{
                 cppcheck --enable=all --inconclusive --xml --xml-version=2 *.cpp *.hpp 2> cppcheck-result.xml
                 ls -la
                 '''
-                archiveArtifacts artifacts: "./*.xml", fingerprint: true
+                archiveArtifacts artifacts: "./cppcheck-result.xml", fingerprint: true
 
             }
         }
