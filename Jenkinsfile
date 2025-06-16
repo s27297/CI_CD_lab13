@@ -35,7 +35,7 @@ pipeline{
                 # Raport pokrycia
                 gcov -b -o . testy-funkcje.cpp
                 '''
-               sh' gcovr -r . --xml-pretty --output coverage.xml --gcovr-format=1'
+               sh' gcovr -r . --xml-pretty --output coverage.xml --xml-version=1'
             }
         }
 
