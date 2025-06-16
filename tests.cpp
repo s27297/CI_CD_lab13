@@ -1,6 +1,8 @@
 #include <cassert>
 #include <iostream>
-#include "main.hpp" // lub zadeklaruj funkcje ręcznie, jeśli nie masz nagłówka
+#include "funkcje.hpp"
+
+using namespace std;
 
 void test_dodaj() {
     assert(dodaj(2, 3) == 5);
@@ -17,6 +19,6 @@ void test_razy() {
 int main() {
     test_dodaj();
     test_razy();
-    std::cout << "Wszystkie testy przeszły pomyślnie." << std::endl;
+    cout << "Wszystkie testy przeszły pomyślnie." << endl;
     return 0;
 }

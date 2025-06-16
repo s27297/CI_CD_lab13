@@ -1,5 +1,5 @@
-#ifndef MAIN_HPP
-#define MAIN_HPP
+#ifndef FUNKCJE_HPP
+#define FUNKCJE_HPP
 
 int dodaj(int a, int b);
 int razy(int a, int b);
