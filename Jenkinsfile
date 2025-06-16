@@ -1,7 +1,7 @@
 pipeline{
-    triggers{
-        pollSCM('* * * * *')
-    }
+    // triggers{
+        // pollSCM('* * * * *')
+    // }
      agent any
     stages{
         stage('checkout'){
@@ -28,7 +28,7 @@ pipeline{
                     '''
                     sh 'g++ -fprofile-arcs -ftest-coverage -O0 tests.cpp funkcje.cpp -o testy'
                     sh 'ls -la'
-                    sh 'gcov -b -o . funkcje.cpp'
+                    sh 'gcov -b -o . testy-funkcje.cpp'
                 }
 
             }
