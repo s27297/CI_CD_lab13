@@ -51,10 +51,12 @@ pipeline{
         stage('SonarQube Analysis') {
             steps {
                 echo "📊 Wysyłanie analizy do SonarQube"
-                sh '''
-                sonar-scanner \
-                  -Dsonar.login=$SONAR_TOKEN
-                '''
+                withSonarQubeEnv("${SONARQUBE_IN_JENKINS}")
+                {
+                 sh 'sonar-scanner -Dsonar.token=$SONAR_AUTH_TOKEN  -Dsonar.host.url=http://sonarqube:9000 -Dsonar.sources=.'
+
+                }
+               
             }
         }
     
