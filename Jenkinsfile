@@ -14,7 +14,7 @@ pipeline{
         stage("kompilacja"){
             steps{
                 sh 'ls -la'
-               sh' g++ main.cpp funkcje.cpp -o program'
+               sh ' g++ main.cpp funkcje.cpp -o program'
                sh './program'
             }
 
