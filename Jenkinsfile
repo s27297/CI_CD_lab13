@@ -35,6 +35,7 @@ pipeline{
 
                 # Raport pokrycia
                 gcov -b -o . testy-funkcje.cpp
+                gcovr -r . --xml-pretty -o coverage.xml
                 '''
                 sh 'ls -la'
             }
@@ -57,7 +58,7 @@ pipeline{
                 withSonarQubeEnv("SonarQube")
                 
                 {
-                 sh 'sonar-scanner -Dsonar.token=$SONAR_AUTH_TOKEN  -Dsonar.host.url=http://sonarqube-lab-13:9000 -Dsonar.sources=.'
+                 sh 'sonar-scanner -Dsonar.token=$SONAR_AUTH_TOKEN  -Dsonar.host.url=http://sonarqube-lab-13:9000 -Dsonar.sources=. -Dsonar.cfamily.gcov.reportsPath=. -Dsonar.coverageReportPaths=coverage.xml'
 
                 }
                
