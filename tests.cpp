@@ -1,6 +1,6 @@
 #include <cassert>
 #include <iostream>
-#include "../funkcje.hpp"
+#include "funkcje.hpp"
 
 using namespace std;
 
