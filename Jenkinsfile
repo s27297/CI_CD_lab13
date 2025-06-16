@@ -25,15 +25,15 @@ pipeline{
                 echo "🧪 Kompilacja testów z pokryciem i uruchomienie"
                 sh '''
                 # Kompilacja testów z pokryciem kodu
-                g++ -fprofile-arcs -ftest-coverage -O0 -g -o testyy main.cpp funkcje.cpp
+                g++ -fprofile-arcs -ftest-coverage -O0 tests.cpp funkcje.cpp -o testy
 
                 # Uruchomienie testów (generuje .gcda)
-                ./testyy
+                ./testy
 
                 # Pokazuje wygenerowane pliki
                 ls -la
                 # Raport pokrycia
-                gcov -b -o . testyy-funkcje.cpp
+                gcov -b -o . testy-funkcje.cpp
                 '''
             }
         }
