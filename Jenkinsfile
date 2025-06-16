@@ -13,7 +13,7 @@ pipeline{
         stage("kompilacja"){
             steps{
                 sh 'ls -la'
-               sh' g++ main.cpp -o program'
+               sh' g++ main.cpp funkcje.cpp -o program'
                sh './program'
             }
 
@@ -25,7 +25,7 @@ pipeline{
                     steps{
                         script{
                             sh '''
-                            g++ tests.cpp main.cpp -o testy
+                            g++ tests.cpp funkcje.cpp -o testy
                             ./testy
                             '''
                         }
