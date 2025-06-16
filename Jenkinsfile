@@ -58,7 +58,9 @@ pipeline{
                 withSonarQubeEnv("SonarQube")
                 
                 {
-                 sh 'sonar-scanner -Dsonar.token=$SONAR_AUTH_TOKEN  -Dsonar.host.url=http://sonarqube-lab-13:9000 -Dsonar.sources=. -Dsonar.cfamily.gcov.reportsPath=. -Dsonar.coverageReportPaths=coverage.xml'
+                 sh 'sonar-scanner -Dsonar.token=$SONAR_AUTH_TOKEN   -Dsonar.host.url=http://sonarqube-lab-13:9000 \
+  -Dsonar.sources=. \
+  -Dsonar.coverageReportPaths=coverage.xml'
 
                 }
                
