@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get update && \
     apt-get install -y python3-pip python3-venv && \
     python3 -m venv /venv && \
-    /venv/bin/pip install gcovr && \
+    /venv/bin/pip install gcovr==1.0 && \
     ln -s /venv/bin/gcovr /usr/local/bin/gcovr
 # Zainstaluj sonar-scanner ręcznie (bo `apt install sonar-scanner` nie działa domyślnie!)
 RUN curl -sSL https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip \
