@@ -35,7 +35,7 @@ pipeline{
                 # Raport pokrycia
                 gcov -b -o . testy-funkcje.cpp
                 '''
-               sh' gcovr -r . --xml--output coverage.xml '
+               sh' gcovr --sonarqube  coverage.xml '
             }
         }
 
