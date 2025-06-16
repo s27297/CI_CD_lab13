@@ -42,5 +42,17 @@ pipeline{
                 }
             }
         }
+        stage('SonarQube'){
+
+            steps{
+                withSonarQubeEnv("${SONARQUBE_IN_JENKINS}")
+                {
+                    echo "sonarqube"
+                    // sh 'npx sonar-scanner -Dsonar.token=$SONAR_AUTH_TOKEN  -Dsonar.host.url=http://sonarqube:9000 -Dsonar.sources=.'
+
+                }
+            }
+        }
+
     }
 }
