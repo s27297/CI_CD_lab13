@@ -33,7 +33,7 @@ pipeline{
                 # Pokazuje wygenerowane pliki
                 ls -la
                 # Raport pokrycia
-                gcov -b -o . testy-funkcje.cpp
+                gcov -b -o . testyy-funkcje.cpp
                 '''
             }
         }
