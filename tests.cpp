@@ -16,6 +16,6 @@ void test_razy() {
 int main() {
     test_dodaj();
     test_razy();
-    cout << "Wszystkie testy przeszły pomyślnie." << endl;
+    std::cout << "Wszystkie testy przeszły pomyślnie." << endl;
     return 0;
 }
