@@ -46,7 +46,7 @@ pipeline{
 
                 ls -la
                 '''
-               sh' gcovr -r . --sonarqube  coverage.xml '
+               sh' gcovr --sonarqube  coverage.xml '
 
                 archiveArtifacts artifacts: "cppcheck-result.xml", fingerprint: true
                 archiveArtifacts artifacts: "coverage.xml", fingerprint: true
@@ -54,18 +54,12 @@ pipeline{
         }
         stage('SonarQube Analysis') {
             steps {
-                sh 'cat coverage.xml'
                 withSonarQubeEnv("SonarQube")
                 
                 {
-                 sh '''
-            sonar-scanner \
-              -Dsonar.token=$SONAR_AUTH_TOKEN \
-              -Dsonar.host.url=http://sonarqube-lab-13:9000 \
-              -Dsonar.sources=. \
-              -Dsonar.coverageReportPaths=coverage.xml \
-              -Dsonar.cfamily.build-wrapper-output=bw-output
-            '''
+                 sh 'sonar-scanner -Dsonar.token=$SONAR_AUTH_TOKEN   -Dsonar.host.url=http://sonarqube-lab-13:9000 \
+  -Dsonar.sources=. \
+  -Dsonar.coverageReportPaths=coverage.xml'
 
                 }
                
