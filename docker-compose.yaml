@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  Jenkins-lab-13:
+    image: jenkins-cpp
+    container_name: Jenkins-lab-13
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    networks:
+      - cat
+    volumes:
+      - D:/studia/jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  sonarqube-lab-13:
+    image: sonarqube
+    container_name: sonarqube-lab-13
+    ports:
+      - "9000:9000"
+    networks:
+      - cat
+networks:
+  cat:
+    driver: bridge
+
