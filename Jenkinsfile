@@ -45,6 +45,7 @@ pipeline{
                 echo "🔍 Analiza cppcheck do XML"
                 sh '''
                 cppcheck --enable=all --inconclusive --xml --xml-version=2 *.cpp *.hpp 2> cppcheck-result.xml
+                ls -la
                 '''
             }
         }
