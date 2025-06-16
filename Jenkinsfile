@@ -54,12 +54,18 @@ pipeline{
         }
         stage('SonarQube Analysis') {
             steps {
+                sh 'cat coverage.xml'
                 withSonarQubeEnv("SonarQube")
                 
                 {
-                 sh 'sonar-scanner -Dsonar.token=$SONAR_AUTH_TOKEN   -Dsonar.host.url=http://sonarqube-lab-13:9000 \
-  -Dsonar.sources=. \
-  -Dsonar.coverageReportPaths=coverage.xml'
+                 sh '''
+            sonar-scanner \
+              -Dsonar.token=$SONAR_AUTH_TOKEN \
+              -Dsonar.host.url=http://sonarqube-lab-13:9000 \
+              -Dsonar.sources=. \
+              -Dsonar.coverageReportPaths=coverage.xml \
+              -Dsonar.cfamily.build-wrapper-output=bw-output
+            '''
 
                 }
                
