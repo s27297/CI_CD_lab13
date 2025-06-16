@@ -34,8 +34,7 @@ pipeline{
                 stage('Coverage'){
                     steps{
                         script{
-                             sh 'cat package.json'
-                            sh 'npm run coverage'
+                            sh 'gcov main.cpp'
                         }
 
                     }
