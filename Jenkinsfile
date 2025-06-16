@@ -35,6 +35,7 @@ pipeline{
                     steps{
                         script{
                             sh 'g++ -fprofile-arcs -ftest-coverage -O0 tests.cpp funkcje.cpp -o testy'
+                            sh 'ls -la'
                             sh 'gcov -b funkcje.cpp'
                         }
 
