@@ -39,13 +39,21 @@ pipeline{
             }
         }
 
-         stage('cppcheck') {
+        stage('cppcheck') {
             steps {
-                echo "🔍 Analiza statyczna z cppcheck"
+                echo "🔍 Analiza cppcheck do XML"
                 sh '''
-                cppcheck --enable=all --inconclusive --quiet --std=c++11 *.cpp *.hpp || true
+                cppcheck --enable=all --inconclusive --xml --xml-version=2 *.cpp *.hpp 2> cppcheck-result.xml
                 '''
-                // Uwaga: `|| true` zapobiega przerwaniu builda, jeśli cppcheck zwróci ostrzeżenia
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                echo "📊 Wysyłanie analizy do SonarQube"
+                sh '''
+                sonar-scanner \
+                  -Dsonar.login=$SONAR_TOKEN
+                '''
             }
         }
     
