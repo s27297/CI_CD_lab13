@@ -35,7 +35,6 @@ pipeline{
                 # Raport pokrycia
                 gcov -b -o . testy-funkcje.cpp
                 '''
-               sh' gcovr --sonarqube  coverage.xml '
             }
         }
 
@@ -47,6 +46,8 @@ pipeline{
 
                 ls -la
                 '''
+               sh' gcovr --sonarqube  coverage.xml '
+
                 archiveArtifacts artifacts: "cppcheck-result.xml", fingerprint: true
                 archiveArtifacts artifacts: "coverage.xml", fingerprint: true
             }
