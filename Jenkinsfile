@@ -38,6 +38,16 @@ pipeline{
                 sh 'ls -la'
             }
         }
+
+         stage('cppcheck') {
+            steps {
+                echo "🔍 Analiza statyczna z cppcheck"
+                sh '''
+                cppcheck --enable=all --inconclusive --quiet --std=c++11 *.cpp *.hpp || true
+                '''
+                // Uwaga: `|| true` zapobiega przerwaniu builda, jeśli cppcheck zwróci ostrzeżenia
+            }
+        }
     
     
         
