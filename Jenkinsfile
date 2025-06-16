@@ -50,7 +50,7 @@ pipeline{
                 ls -la
                 '''
                 archiveArtifacts artifacts: "cppcheck-result.xml", fingerprint: true
-
+                archiveArtifacts artifacts: "coverage.xml", fingerprint: true
             }
         }
         stage('SonarQube Analysis') {
