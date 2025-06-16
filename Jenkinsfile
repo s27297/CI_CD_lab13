@@ -18,31 +18,23 @@ pipeline{
             }
 
         }
-        stage('parallel'){
-            parallel{
 
-                stage('Testing'){
-                    steps{
-                        script{
-                            sh '''
-                            g++ tests.cpp funkcje.cpp -o testy
-                            ./testy
-                            '''
-                        }
-                    }
+        stage('testy'){
+            steps{
+                script{
+                        sh '''
+                    g++ tests.cpp funkcje.cpp -o testy
+                    ./testy
+                    '''
+                    sh 'g++ -fprofile-arcs -ftest-coverage -O0 tests.cpp funkcje.cpp -o testy'
+                    sh 'ls -la'
+                    sh 'gcov -b -o . funkcje.cpp'
                 }
-                stage('Coverage'){
-                    steps{
-                        script{
-                            sh '''g++ -fprofile-arcs -ftest-coverage -O0 tests.cpp funkcje.cpp -o testy
-                            ls -la
-                            gcov -b funkcje.cpp'''
-                        }
 
-                    }
-                }
             }
         }
+    
+        
         stage('SonarQube'){
 
             steps{
