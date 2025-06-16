@@ -44,7 +44,8 @@ pipeline{
             steps {
                 echo "🔍 Analiza cppcheck do XML"
                 sh '''
-                cppcheck --enable=all --inconclusive --xml --xml-version=2 *.cpp *.hpp 2> cppcheck-result.xml
+               cppcheck --enable=all --inconclusive --xml --xml-version=2 -I/usr/include -I/usr/local/include *.cpp *.hpp 2> cppcheck-result.xml
+
                 ls -la
                 '''
                 archiveArtifacts artifacts: "cppcheck-result.xml", fingerprint: true
