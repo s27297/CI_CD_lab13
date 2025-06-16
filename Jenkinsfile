@@ -19,33 +19,42 @@ pipeline{
 
         }
 
-        stage('testy'){
-            steps{
-                script{
-                        sh '''
-                    g++ tests.cpp funkcje.cpp -o testy
-                    ./testy
-                    '''
-                    sh 'g++ -fprofile-arcs -ftest-coverage -O0 tests.cpp funkcje.cpp -o testy'
-                    sh 'ls -la'
-                    sh 'gcov -b -o . testy-funkcje.cpp'
-                }
+         stage('testy z pokryciem') {
+            steps {
+                echo "🧪 Kompilacja testów z pokryciem i uruchomienie"
+                sh '''
+                # Kompilacja testów z pokryciem kodu
+                g++ -fprofile-arcs -ftest-coverage -O0 tests.cpp funkcje.cpp -o testy
 
+                # Uruchomienie testów (generuje .gcda)
+                ./testy
+
+                # Pokazuje wygenerowane pliki
+                ls -la
+
+                # Raport pokrycia
+                gcov -b -o . funkcje.cpp
+                '''
             }
         }
     
+    
         
-        stage('SonarQube'){
-
-            steps{
-                withSonarQubeEnv("${SONARQUBE_IN_JENKINS}")
-                {
-                    echo "sonarqube"
-                    // sh 'npx sonar-scanner -Dsonar.token=$SONAR_AUTH_TOKEN  -Dsonar.host.url=http://sonarqube:9000 -Dsonar.sources=.'
-
-                }
-            }
-        }
+     
 
     }
 }
+
+
+
+//    stage('SonarQube'){
+
+//             steps{
+//                 withSonarQubeEnv("${SONARQUBE_IN_JENKINS}")
+//                 {
+//                     echo "sonarqube"
+//                     // sh 'npx sonar-scanner -Dsonar.token=$SONAR_AUTH_TOKEN  -Dsonar.host.url=http://sonarqube:9000 -Dsonar.sources=.'
+
+//                 }
+//             }
+//         }
